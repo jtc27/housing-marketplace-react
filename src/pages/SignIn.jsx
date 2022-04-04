@@ -1,5 +1,7 @@
 import { toast } from "react-toastify"
 
+import OAuth from "../components/OAuth"
+
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {ReactComponent as ArrowRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
@@ -85,11 +87,11 @@ function SignIn() {
         </div>
         </form>
 
-        {/* google OAuth */}
+         
         <Link to='/sign-up'
         className="registerLink">
-        Register
-        </Link>
+        Click here to Register
+        </Link><OAuth/>
 
       </main>
     </div>
