@@ -1,3 +1,5 @@
+import { toast } from "react-toastify"
+
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {ReactComponent as ArrowRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
@@ -37,7 +39,7 @@ function SignIn() {
         navigate('/')
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Email or Password not valid')
     }
   }
 

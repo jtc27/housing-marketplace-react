@@ -1,3 +1,5 @@
+import { toast } from "react-toastify"
+
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {ReactComponent as ArrowRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
@@ -56,7 +58,7 @@ function SignUp() {
       navigate('/')
 
     } catch (error) {
-      console.log(error);
+      toast.error('Registration error')
     }
   }
 
@@ -64,7 +66,7 @@ function SignUp() {
     <>
     <div className="pageContainer">
       <header>
-        <p className="pageHeader">Register</p>
+        <p className="pageHeader">Registration Page</p>
       </header>
 
       <main>
