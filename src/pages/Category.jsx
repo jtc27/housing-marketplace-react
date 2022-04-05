@@ -7,6 +7,7 @@ import { toast } from "react-toastify"
 import {db} from '../firebase.config'
 
 import Spinner from "../components/Spinner"
+import ListingItem from "../components/ListingItem"
 
 function Category() {
 
@@ -38,10 +39,10 @@ function Category() {
             data: doc.data()
           })
         })
-        //Firebase requires a loop through querySnap and push into listings array
+        //Firebase requires a loop through querySnap and pushes data into listings array
         // the doc.data() method has all the info, but not the id.  doc.id has it
 
-        //PSA: forEach mutates source array
+        //forEach mutates source array
 
         setListings(listings) //listings array is put into state
         setLoading(false)
@@ -70,7 +71,11 @@ function Category() {
       <main>
         <ul className="categoryListings">
           {listings.map((listing) => (
-            <h3 key={listing.id}>{listing.data.name} it costs {listing.data.regularPrice}</h3>
+            <ListingItem
+            listing={listing.data}
+            id={listing.id}
+            key={listing.id}
+            />
           ))}
         </ul>
       </main>
