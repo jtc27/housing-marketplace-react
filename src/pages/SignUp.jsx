@@ -111,11 +111,12 @@ function SignUp() {
         </div>
         </form>
  
-        <OAuth />
+        
         <Link to='/sign-in'
         className="registerLink">
-        Sign In Page
+        Go to Sign In Page
         </Link>
+        <OAuth />
 
       </main>
     </div>
