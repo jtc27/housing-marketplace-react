@@ -24,8 +24,10 @@ function Explore() {
             <p className="exploreCategoryName">Places for rent</p>
           </Link>
 
-          <Link to='/category/sell'>
-            <img src={sellCategoryImage} alt="sell"  
+          <Link to='/category/sale'> 
+          {/* Previously this link was called 'sell'.  but this did not match db listing type 'sale'
+          and the houses for sale were not rendering. */}
+            <img src={sellCategoryImage} alt="sale"  
             className="exploreCategoryImg"/>
             <p className="exploreCategoryName">Places for sale</p>
           </Link>
