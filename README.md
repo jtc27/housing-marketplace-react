@@ -5,9 +5,7 @@ Housing web app from the Udemy course "React Front to Back 2022".
 Deployed at [https://housing-marketplace-react.vercel.app](https://housing-marketplace-react.vercel.app/)
 
 
-<img src="https://github.com/jtc27/Tennis-Club-UI-Login/blob/main/img/1.png" height="250">
-<img src="https://github.com/jtc27/Tennis-Club-UI-Login/blob/main/img/2.png" height="250">
-<img src="https://github.com/jtc27/Tennis-Club-UI-Login/blob/main/img/3.png" height="300">
+<img src="https://raw.githubusercontent.com/jtc27/housing-marketplace-react/main/src/housing-app.png" height="250">
 
 ## Features
 * User can sell or rent properties
@@ -21,9 +19,9 @@ Deployed at [https://housing-marketplace-react.vercel.app](https://housing-marke
 
 | Dependencies  | Description |
 | ------------- | ------------- |
-|  [LeafletJs](https://leafletjs.com/)  | Leaflet  |
+|  [LeafletJs](https://leafletjs.com/)  | Leaflet Map  |
 |  [Firebase](https://firebase.google.com)  | Online DB by Google  |
-|  [SwiperJs](https://swiperjs.com)  | Swiper  |
+|  [SwiperJs](https://swiperjs.com)  | Swiper Touch Slider |
 
 
 
