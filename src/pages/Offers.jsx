@@ -13,6 +13,7 @@ function Offers() {
 
   const [listings, setListings] =useState(null)
   const [loading, setLoading] =useState(true)
+  const [lastFetchedListing, setLastFetchedListing] = useState(null)
 
   const params = useParams()
 
@@ -24,13 +25,17 @@ function Offers() {
 
         //make query
         const q = query(listingsRef, 
-          where('offer', '==', true), //in app.js  <Route path='/category/:categoryName'
+          where('offer', '==', true), //in app.js  <Route path='3000/offers
           orderBy('timestamp', 'desc'),
-          limit(10)
+          limit(1)
           )  
 
         //Execute query
         const querySnap = await getDocs(q)
+
+          //assigns lastVisible, for pagination
+          const lastVisible = querySnap.docs[querySnap.docs.length -1]
+          setLastFetchedListing(lastVisible) 
 
         const listings = []
         querySnap.forEach((doc) => {
@@ -55,6 +60,48 @@ function Offers() {
     fetchListings()
   }, [])
 
+  const onFetchMoreListings = async () => {
+    try {
+      //Get reference
+      const listingsRef = collection(db, 'listings')  //refers to collection, not doc like in sign-up
+
+      //make query
+      const q = query(listingsRef, 
+        where('offer', '==', true), //in app.js  <Route path='3000/offers
+        orderBy('timestamp', 'desc'),
+        startAfter(lastFetchedListing),
+        limit(1)
+        )  
+
+      //Execute query
+      const querySnap = await getDocs(q)
+
+        //assigns lastVisible, for pagination
+        const lastVisible = querySnap.docs[querySnap.docs.length -1]
+        setLastFetchedListing(lastVisible) 
+
+      const listings = []
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data()
+        })
+      })
+      //Firebase requires a loop through querySnap and pushes data into listings array
+      // the doc.data() method has all the info, but not the id.  doc.id has it
+
+      //forEach mutates source array
+
+      //Adds 1 to the prevState of 1
+      setListings((prevState) => [...prevState, ...listings]) 
+      setLoading(false)
+
+    } catch (error) {
+      toast.error('Could not fetch listings')
+    }
+  }
+
+
   return (
     <div className="category">
       <header>
@@ -77,6 +124,11 @@ function Offers() {
           ))}
         </ul>
       </main>
+      <br/> 
+           <br/> 
+           {lastFetchedListing && (
+            <p className="loadMore" onClick={onFetchMoreListings}>Load More</p>
+           )}
       </>
       : 'No listings available'}
 

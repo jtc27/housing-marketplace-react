@@ -38,7 +38,7 @@ function Profile() {
 
       const q = query(
         listingsRef,
-        where('userRef', '==', auth.currentUser.uid),
+        where('userRef', '==', auth.currentUser.uid), //only gets the listings belonging to current user
         orderBy('timestamp', 'desc')
       )
 
