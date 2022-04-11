@@ -17,7 +17,7 @@ import { db } from "../firebase.config"
 import Spinner from "../components/Spinner"
 import shareIcon from '../assets/svg/shareIcon.svg'
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])  //adds these things to the swiper
 
 function Listing() {
   const [listing, setListing] = useState(null)
