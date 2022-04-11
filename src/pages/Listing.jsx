@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 
 import { Link, useNavigate, useParams } from "react-router-dom"
 
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+// For the leaflet map
+
 import { doc, getDoc } from "firebase/firestore"
 
 import { getAuth } from "firebase/auth"
@@ -90,7 +93,26 @@ function Listing() {
         </ul>
 
         <p className='listingLocationTitle'>Location</p>
-        {/* map */}
+        
+          <div className="leafletContainer">
+              <MapContainer style={{height: '100%', width: '100%'}}
+              center={[listing.geolocation.lat, listing.geolocation.lng]} 
+              zoom = {13}
+              scrollWheelZoom = {true}
+              >
+                <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
+                />
+
+                <Marker
+                  position={[listing.geolocation.lat, listing.geolocation.lng]}
+                >
+              <Popup>{listing.location}</Popup>
+
+            </Marker>
+              </MapContainer>
+          </div>
 
         {/* If someone else is viewing the property */}
         {auth.currentUser?.uid !== listing.userRef && (
@@ -109,3 +131,5 @@ function Listing() {
 }
 
 export default Listing
+
+// https://stackoverflow.com/questions/67552020/how-to-fix-error-failed-to-compile-node-modules-react-leaflet-core-esm-pat
